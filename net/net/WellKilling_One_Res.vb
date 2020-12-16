@@ -1,7 +1,7 @@
 ﻿Option Explicit On
 Imports System.Math
 Public Module WellKilling_One_Res
-    Public Function StableRate_WKs11(ByVal k As Double,
+    Public Function StableRate_one_WKs11(ByVal k As Double,
                    ByVal por As Double,
                    ByVal mu As Double,
                    ByVal Ct As Double,
@@ -38,20 +38,20 @@ Public Module WellKilling_One_Res
         If i = 1 Then
 
             qwf = (C1 * (s / z) ^ 0.5 * spec.BesselI(xw, 1) - C2 * (s / z) ^ 0.5 * spec.BesselK(xw, 1)) * (2 * 3.14 * k * h * rw) / (mu)
-            WKs11 = qwf
+            StableRate_one_WKs11 = qwf
 
         End If
 
         If i = 2 Then
 
             p = C1 * spec.BesselI(xw, 0) + C2 * spec.BesselK(xw, 0)
-            WKs11 = p
+            StableRate_one_WKs11 = p
 
         End If
 
     End Function
 
-    Public Function StableRate_WKt11(ByVal N As Integer,
+    Public Function StableRate_one_WKt11(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -74,18 +74,18 @@ Public Module WellKilling_One_Res
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = WKs11(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_WKs11(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, si, i)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        WKt11 = Sum
+        StableRate_one_WKt11 = Sum
 
     End Function
 
-    Public Function StableRate_WKrs11(ByVal k As Double,
+    Public Function StableRate_one_WKrs11(ByVal k As Double,
                            ByVal por As Double,
                            ByVal mu As Double,
                            ByVal Ct As Double,
@@ -121,11 +121,11 @@ Public Module WellKilling_One_Res
         C2 = (A * F) / (A * E - B * D)
 
         p = C1 * spec.BesselI(x, 0) + C2 * spec.BesselK(x, 0)
-        WKrs11 = p
+        StableRate_one_WKrs11 = p
 
     End Function
 
-    Public Function StableRate_WKrt11(ByVal N As Integer,
+    Public Function StableRate_one_WKrt11(ByVal N As Integer,
                            ByVal T As Double,
                            ByVal k As Double,
                            ByVal por As Double,
@@ -148,18 +148,18 @@ Public Module WellKilling_One_Res
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = WKrs11(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, r, si)
-            Vi = Coef(N, j)
+            fi = StableRate_WKrs11(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, r, si)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        WKrt11 = Sum
+        StableRate_one_WKrt11 = Sum
 
     End Function
 
-    Public Function StableRate_WKs12(ByVal k As Double,
+    Public Function StableRate_one_WKs12(ByVal k As Double,
                           ByVal por As Double,
                           ByVal mu As Double,
                           ByVal Ct As Double,
@@ -203,20 +203,20 @@ Public Module WellKilling_One_Res
         If i = 1 Then
 
             qwf = (C1 * (s / z) ^ 0.5 * spec.BesselI(xw, 1) - C2 * (s / z) ^ 0.5 * spec.BesselK(xw, 1)) * (2 * 3.14 * k * h * rw) / (mu)
-            WKs12 = qwf
+            StableRate_one_WKs12 = qwf
 
         End If
 
         If i = 2 Then
 
             p = C1 * spec.BesselI(xw, 0) + C2 * spec.BesselK(xw, 0)
-            WKs12 = p
+            StableRate_one_WKs12 = p
 
         End If
 
     End Function
 
-    Public Function StableRate_WKt12(ByVal N As Integer,
+    Public Function StableRate_one_WKt12(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -244,18 +244,18 @@ Public Module WellKilling_One_Res
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = WKs12(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_WKs12(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, si, i)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        WKt12 = Sum
+        StableRate_one_WKt12 = Sum
 
     End Function
 
-    Public Function StableRate_WKsr12(ByVal k As Double,
+    Public Function StableRate_one_WKsr12(ByVal k As Double,
                            ByVal por As Double,
                            ByVal mu As Double,
                            ByVal Ct As Double,
@@ -298,11 +298,11 @@ Public Module WellKilling_One_Res
         C2 = (A * F) / (A * E - B * D)
 
         p = C1 * spec.BesselI(x, 0) + C2 * spec.BesselK(x, 0)
-        WKsr12 = p
+        StableRate_one_WKsr12 = p
 
     End Function
 
-    Public Function StableRate_WKtr12(ByVal N As Integer,
+    Public Function StableRate_one_WKtr12(ByVal N As Integer,
                            ByVal T As Double,
                            ByVal k As Double,
                            ByVal por As Double,
@@ -330,14 +330,14 @@ Public Module WellKilling_One_Res
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = WKsr12(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, r, si)
-            Vi = Coef(N, j)
+            fi = StableRate_WKsr12(k, por, mu, Ct, Bo, rw, re, h, Po, Pwf, q, Cs, r, si)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        WKtr12 = Sum
+        StableRate_one_WKtr12 = Sum
 
     End Function
 
