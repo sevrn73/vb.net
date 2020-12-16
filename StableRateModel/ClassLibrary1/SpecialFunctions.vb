@@ -779,7 +779,7 @@ Public Class SpecialFunctions
         '=============================================
         'by Shanjie Zhang and Jianming Jin, 2001
         Dim p2, EL, eps, x2, xr, m, XA1, XA0, xa, XS, XG1, XCS, XSS, XG2, Xf, XG As Double
-        Dim BJ(101)
+        Dim BJ(101) As Double
         p2 = 1.5707963267949
         EL = 0.577215664901533
         eps = 0.000000000000001
@@ -946,7 +946,7 @@ Public Class SpecialFunctions
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselJ = BJ0 Else BesselJ = BJ1
         Else
-            Call JYNA(N, x, nm, BJ, dj, By, dy)
+            Call JYNA(N, x, nm, BJ, dj, BY, dy)
             BesselJ = BJ(N)
         End If
     End Function
@@ -957,8 +957,8 @@ Public Class SpecialFunctions
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselY = BY0 Else BesselY = BY1
         Else
-            Call JYNA(N, x, nm, BJ, dj, By, dy)
-            BesselY = By(N)
+            Call JYNA(N, x, nm, BJ, dj, BY, dy)
+            BesselY = BY(N)
         End If
     End Function
 
@@ -968,7 +968,7 @@ Public Class SpecialFunctions
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldJ = DJ0 Else BesseldJ = DJ1
         Else
-            Call JYNA(N, x, nm, BJ, dj, By, dy)
+            Call JYNA(N, x, nm, BJ, dj, BY, dy)
             BesseldJ = dj(N)
         End If
     End Function
@@ -979,7 +979,7 @@ Public Class SpecialFunctions
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldY = DY0 Else BesseldY = DY1
         Else
-            Call JYNA(N, x, nm, BJ, dj, By, dy)
+            Call JYNA(N, x, nm, BJ, dj, BY, dy)
             BesseldY = dy(N)
         End If
     End Function
@@ -1038,7 +1038,7 @@ Public Class SpecialFunctions
         End If
     End Function
 
-    Public Function SinIntegral(x) As Double
+    Public Function SinIntegral(ByVal x As Double) As Double
         'returns sin integral ci(x)
         If x >= 0 Then
             Call CISIA(x, ci, si)
@@ -1048,7 +1048,7 @@ Public Class SpecialFunctions
         End If
     End Function
 
-    Public Function Fresnel_cos(x) As Double
+    Public Function Fresnel_cos(ByVal x As Double) As Double
         'returns Fresnel's cos integral
         If x >= 0 Then
             Call FCS(x, Fr_c, Fr_s)
@@ -1058,7 +1058,7 @@ Public Class SpecialFunctions
         End If
     End Function
 
-    Public Function Fresnel_sin(x) As Double
+    Public Function Fresnel_sin(ByVal x As Double) As Double
         'returns Fresnel's sin integral
         If x >= 0 Then
             Call FCS(x, Fr_c, Fr_s)
