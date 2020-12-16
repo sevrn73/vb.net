@@ -85,7 +85,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="One_reservoir.vb" />
-    <Compile Include="SpecialFunctions.vb" />
     <Compile Include="Two_reservoirs.vb" />
     <Compile Include="WellKilling_One_Res.vb" />
     <Compile Include="WellKilling_Two_Res.vb" />
