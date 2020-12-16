@@ -15,16 +15,88 @@ Public Class SpecialFunctions
     Public BY1 As Double
     Public DY1 As Double
     Public nm As Double
-    Public BJ As Double
-    Public dj As Double
-    Public By As Double
-    Public dy As Double
+    Public Fr_c As Double
+    Public Fr_s As Double
+    Public ci As Double
+    Public si As Double
+    Public BI0 As Double
+    Public DI0 As Double
+    Public BI1 As Double
+    Public DI1 As Double
+    Public BK0 As Double
+    Public DK0 As Double
+    Public BK1 As Double
+    Public DK1 As Double
+    Public BI() As Double
+    Public Di() As Double
+    Public BK() As Double
+    Public DK() As Double
+    Public BJ() As Double
+    Public BY() As Double
+    Public dj() As Double
+    Public dy() As Double
 
 
     Const pi_ = 3.14159265358979
     Public Sub Class_init(Optional ByVal BJ0_ As Double = 0,
-                          )
+                          Optional ByVal DJ0_ As Double = 0,
+                          Optional ByVal BJ1_ As Double = 0,
+                          Optional ByVal DJ1_ As Double = 0,
+                          Optional ByVal BY0_ As Double = 0,
+                          Optional ByVal DY0_ As Double = 0,
+                          Optional ByVal BY1_ As Double = 0,
+                          Optional ByVal DY1_ As Double = 0,
+                          Optional ByVal nm_ As Double = 0,
+                          Optional ByVal Fr_c_ As Double = 0,
+                          Optional ByVal Fr_s_ As Double = 0,
+                          Optional ByVal ci_ As Double = 0,
+                          Optional ByVal si_ As Double = 0,
+                          Optional ByVal BI0_ As Double = 0,
+                          Optional ByVal DI0_ As Double = 0,
+                          Optional ByVal BI1_ As Double = 0,
+                          Optional ByVal DI1_ As Double = 0,
+                          Optional ByVal BK0_ As Double = 0,
+                          Optional ByVal DK0_ As Double = 0,
+                          Optional ByVal DK1_ As Double = 0,
+                          Optional ByVal BK1_ As Double = 0,
+                          Optional ByVal BI_() As Double = Nothing,
+                          Optional ByVal Di_() As Double = Nothing,
+                          Optional ByVal BK_() As Double = Nothing,
+                          Optional ByVal DK_() As Double = Nothing,
+                          Optional ByVal BJ_() As Double = Nothing,
+                          Optional ByVal BY_() As Double = Nothing,
+                          Optional ByVal dj_() As Double = Nothing,
+                          Optional ByVal dy_() As Double = Nothing)
         BJ0 = BJ0_
+        DJ0 = DJ0_
+        BJ1 = BJ1_
+        DJ1 = DJ1_
+        BY0 = BY0_
+        DY0 = DY0_
+        BY1 = BY1_
+        DY1 = DY1_
+        nm = nm_
+        Fr_c = Fr_c_
+        Fr_s = Fr_s_
+        ci = ci_
+        si = si_
+        BI0 = BI0_
+        DI0 = DI0_
+        BI1 = BI1_
+        DI1 = DI1_
+        BK0 = BK0_
+        DK0 = DK0_
+        BK1 = BK1_
+        DK1 = DK1_
+        BI = BI_
+        Di = Di_
+        BK = BK_
+        DK = DK_
+        BJ = BJ_
+        BY = BY_
+        dj = dj_
+        dy = dy_
+
     End Sub
     Public Function errfun(ByVal x As Double) As Double
         'returns the integral of Gauss' standard error function
@@ -63,7 +135,7 @@ Public Class SpecialFunctions
     Public Function digamma(ByVal x As Double) As Double
         Dim B1(11) As Double, B2(11) As Double
         Const LIM_LOW = 8
-
+        Dim z, s, tmp, y As Double
         'Bernoulli's numbers
         B1(0) = 1 : B2(0) = 1
         B1(1) = 1 : B2(1) = 6
@@ -101,7 +173,7 @@ Public Class SpecialFunctions
     End Function
 
 
-    Function exp_integr(x)
+    Public Function exp_integr(ByVal x As Double) As Double
         'Computes the exponential integral Ei(x) for x >0.
         'Parameters: EPS is the relative error, or absolute error near the zero
         'EULER is Euler's constant ; MAXIT is the maximum number of iterations allowed; FPMIN
@@ -142,12 +214,13 @@ Public Class SpecialFunctions
     End Function
 
 
-    Function expn_integr(x, N)
+    Public Function expn_integr(ByVal x As Double, ByVal N As Double) As Double
         'Evaluates the exponential integral En(x).
         'Parameters: MAXIT is the maximum allowed number of iterations; EPS is the desired rel-
         'ative error, not smaller than the machine precision; FPMIN is a number near the smallest
         'representable foating-point number; EULER is Euler's constant .
         Const MAXIT = 100, eps = 0.000000000000001, FPMIN = 1.0E-30, EULER = 0.577215664901532
+        Dim nm1, B, C, D, H, A, del, Fact, Psi As Double
         nm1 = N - 1
         If (N < 0 Or x < 0 Or (x = 0 And (N = 0 Or N = 1))) Then
             Exit Function
@@ -210,7 +283,7 @@ Public Class SpecialFunctions
     'routines into other programs providing that the copyright is acknowledged.
     'We have modified only minimal parts for adapting to VBA.
 
-    Sub JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+    Public Sub JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
         '=======================================================
         ' Purpose: Compute Bessel functions J0(x), J1(x), Y0(x),
         '         Y1(x), and their derivatives
@@ -225,7 +298,8 @@ Public Class SpecialFunctions
         '          DY1 --- Y1'(x)
         '=======================================================
         'by Shanjie Zhang and Jianming Jin, 2001
-        PI = 3.14159265358979
+        Dim Pi, RP2, x2, r, EC, W0, r0, CS0, Cs1, w1, R1, A(12), B(12), B1(12), A1(12), K0, P0, CU, Q0, t1, t2, p1, q1, i As Double
+        Pi = 3.14159265358979
         RP2 = 0.63661977236758
         x2 = x * x
         If (x = 0#) Then
@@ -279,30 +353,30 @@ Public Class SpecialFunctions
             Next
             BY1 = RP2 * (EC * BJ1 - 1.0# / x - 0.25 * x * Cs1)
         Else
-            A = Array(-0.0703125, 0.112152099609375,
+            A = {-0.0703125, 0.112152099609375,
          -0.572501420974731, 6.07404200127348,
          -110.017140269247, 3038.09051092238,
          -118838.426256783, 6252951.4934348,
          -425939216.504767, 36468400807.0656,
-         -3833534661393.94, 485401468685290.0#)
-            B = Array(0.0732421875, -0.227108001708984,
+         -3833534661393.94, 485401468685290.0#}
+            B = {0.0732421875, -0.227108001708984,
           1.72772750258446, -24.3805296995561,
           551.335896122021, -18257.7554742932,
           832859.304016289, -50069589.5319889,
           3836255180.23043, -364901081884.983,
-          42189715702841.0#, -5.82724463156691E+15)
-            A1 = Array(0.1171875, -0.144195556640625,
+          42189715702841.0#, -5.82724463156691E+15}
+            A1 = {0.1171875, -0.144195556640625,
           0.676592588424683, -6.88391426810995,
           121.597891876536, -3302.27229448085,
           127641.272646175, -6656367.71881769,
           450278600.305039, -38338575207.4279,
-          4011838599133.2, -506056850331473.0#)
-            B1 = Array(-0.1025390625, 0.277576446533203,
+          4011838599133.2, -506056850331473.0#}
+            B1 = {-0.1025390625, 0.277576446533203,
           -1.9935317337513, 27.2488273112685,
           -603.84407670507, 19718.3759122366,
           -890297.876707068, 53104110.1096852,
           -4043620325.10775, 382701134659.86,
-          -44064814178522.8, 6.0650913512227E+15)
+          -44064814178522.8, 6.0650913512227E+15}
             K0 = 12
             If (x >= 35.0#) Then K0 = 10
             If (x >= 50.0#) Then K0 = 8
@@ -314,7 +388,7 @@ Public Class SpecialFunctions
                 P0 = P0 + A(i) * x ^ (-2 * k)
                 Q0 = Q0 + B(i) * x ^ (-2 * k - 1)
             Next
-            CU = Sqr(RP2 / x)
+            CU = Sqrt(RP2 / x)
             BJ0 = CU * (P0 * Cos(t1) - Q0 * Sin(t1))
             BY0 = CU * (P0 * Sin(t1) + Q0 * Cos(t1))
             t2 = x - 0.75 * PI
@@ -325,7 +399,7 @@ Public Class SpecialFunctions
                 p1 = p1 + A1(i) * x ^ (-2 * k)
                 q1 = q1 + B1(i) * x ^ (-2 * k - 1)
             Next
-            CU = Sqr(RP2 / x)
+            CU = Sqrt(RP2 / x)
             BJ1 = CU * (p1 * Cos(t2) - q1 * Sin(t2))
             BY1 = CU * (p1 * Sin(t2) + q1 * Cos(t2))
         End If
@@ -336,8 +410,10 @@ Public Class SpecialFunctions
     End Sub
 
 
-    Sub JYNA(N, x, nm, BJ, dj, By, dy)
-        '  ==========================================================
+    Public Sub JYNA(ByVal N As Double, ByVal x As Double,
+                    ByVal nm As Double, ByVal BJ() As Double,
+                    ByVal dj() As Double, ByVal By() As Double, ByVal dy() As Double)
+        '  ========================================================== 
         '       Purpose: Compute Bessel functions Jn(x) & Yn(x) and
         '                their derivatives
         '       Input :  x --- Argument of Jn(x) & Yn(x)  ( x > 0 )
@@ -353,6 +429,7 @@ Public Class SpecialFunctions
         '                point for backward recurrence
         '  =========================================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim BJK, m, F1, F2, Cs, F, F0 As Double
         ReDim BJ(N), By(N), dj(N), dy(N)
         nm = N
         If (x < 1.0E-100) Then
@@ -425,7 +502,7 @@ Public Class SpecialFunctions
     End Sub
 
 
-    Private Function MSTA1(x, mp) As Integer
+    Private Function MSTA1(ByVal x As Double, ByVal mp As Double) As Integer
         '  ===================================================
         '  Purpose: Determine the starting point for backward
         '           recurrence such that the magnitude of
@@ -435,6 +512,7 @@ Public Class SpecialFunctions
         '  Output:  MSTA1 --- Starting point
         ' ===================================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim A0, N0, F0, n1, F1, nn, F As Double
         A0 = Abs(x)
         N0 = Int(1.1 * A0) + 1
         F0 = ENVJ(N0, A0) - mp
@@ -453,7 +531,7 @@ Public Class SpecialFunctions
     End Function
 
 
-    Private Function MSTA2(x, N, mp) As Integer
+    Private Function MSTA2(ByVal x As Double, ByVal N As Double, ByVal mp As Double) As Integer
         ' ===================================================
         ' Purpose: Determine the starting point for backward
         '         recurrence such that all Jn(x) has MP
@@ -464,6 +542,7 @@ Public Class SpecialFunctions
         ' Output:  MSTA2 --- Starting point
         ' ===================================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim A0, HMP, EJN, N0, obj, F0, F1, n1, F, nn As Double
         A0 = Abs(x)
         HMP = 0.5 * mp
         EJN = ENVJ(N, A0)
@@ -489,11 +568,13 @@ Public Class SpecialFunctions
         MSTA2 = nn + 10
     End Function
 
-    Private Function ENVJ(N, x)
+    Private Function ENVJ(ByVal N As Double, ByVal x As Double) As Double
         ENVJ = 0.5 * Log10(6.28 * N) - N * Log10(1.36 * x / N)
     End Function
 
-    Sub IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+    Public Sub IK01A(ByVal x As Double, ByVal BI0 As Double, ByVal DI0 As Double,
+                     ByVal BI1 As Double, ByVal DI1 As Double, ByVal BK0 As Double,
+                     ByVal DK0 As Double, ByVal BK1 As Double, ByVal DK1 As Double)
         '=========================================================
         'Purpose: Compute modified Bessel functions I0(x), I1(1),
         '         K0(x) and K1(x), and their derivatives
@@ -508,6 +589,7 @@ Public Class SpecialFunctions
         '         DK1 --- K1'(x)
         '=========================================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim x2, r, A(12), B(12), K0, CA, xr, i, Ct, W0, WW, A1(8), cb, XR2 As Double
         Const PI = 3.14159265358979
         Const EL = 0.577215664901533
         x2 = x * x
@@ -538,22 +620,22 @@ Public Class SpecialFunctions
             Next
             BI1 = 0.5 * x * BI1
         Else
-            A = Array(0.125, 0.0703125,
+            A = {0.125, 0.0703125,
           0.0732421875, 0.11215209960938,
           0.22710800170898, 0.57250142097473,
           1.7277275025845, 6.0740420012735,
           24.380529699556, 110.01714026925,
-          551.33589612202, 3038.0905109224)
-            B = Array(-0.375, -0.1171875,
+          551.33589612202, 3038.0905109224}
+            B = {-0.375, -0.1171875,
           -0.1025390625, -0.14419555664063,
           -0.2775764465332, -0.67659258842468,
           -1.9935317337513, -6.8839142681099,
           -27.248827311269, -121.59789187654,
-          -603.84407670507, -3302.2722944809)
+          -603.84407670507, -3302.2722944809}
             K0 = 12
             If (x >= 35.0#) Then K0 = 9
             If (x >= 50.0#) Then K0 = 7
-            CA = Exp(x) / Sqr(2.0# * PI * x)
+            CA = Exp(x) / Sqrt(2.0# * PI * x)
             BI0 = 1.0#
             xr = 1.0# / x
             For k = 1 To K0
@@ -582,10 +664,10 @@ Public Class SpecialFunctions
             Next
             BK0 = BK0 + Ct
         Else
-            A1 = Array(0.125, 0.2109375,
+            A1 = {0.125, 0.2109375,
            1.0986328125, 11.775970458984,
            214.61706161499, 5951.1522710323,
-           233476.45606175, 12312234.987631)
+           233476.45606175, 12312234.987631}
             cb = 0.5 / x
             XR2 = 1.0# / x2
             BK0 = 1.0#
@@ -603,7 +685,7 @@ Public Class SpecialFunctions
 
     End Sub
 
-    Sub IKNA(N, x, nm, BI, Di, BK, DK)
+    Public Sub IKNA(ByVal N As Double, ByVal x As Double, ByVal nm As Double, ByVal BI As Double, Di, BK, DK)
         ' ========================================================
         ' Purpose: Compute modified Bessel functions In(x) and
         '          Kn(x), and their derivatives
@@ -686,7 +768,7 @@ Public Class SpecialFunctions
         Next
     End Sub
 
-    Sub CISIA(x, ci, si)
+    Public Sub CISIA(x, ci, si)
         '=============================================
         ' Purpose: Compute cosine and sine integrals
         '          Si(x) and Ci(x)  ( x т 0 )
@@ -770,7 +852,7 @@ Public Class SpecialFunctions
         End If
     End Sub
 
-    Sub FCS(x, C, s)
+    Public Sub FCS(x, C, s)
         ' =================================================
         '  Purpose: Compute Fresnel integrals C(x) and S(x)
         '  Input :  x --- Argument of C(x) and S(x)
@@ -924,7 +1006,6 @@ Label40:
 
     Public Function BesselK(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'modified Bessel function 2° kind, order n, In(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesselK = BK0 Else BesselK = BK1
@@ -934,9 +1015,8 @@ Label40:
         End If
     End Function
 
-    Public Function BesseldK(x, Optional N)
+    Public Function BesseldK(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'derivative of modified Bessel function 2° kind, order n, In(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesseldK = DK0 Else BesseldK = DK1
@@ -956,7 +1036,7 @@ Label40:
         End If
     End Function
 
-    Function SinIntegral(x)
+    Public Function SinIntegral(x) As Double
         'returns sin integral ci(x)
         If x >= 0 Then
             Call CISIA(x, ci, si)
@@ -966,7 +1046,7 @@ Label40:
         End If
     End Function
 
-    Function Fresnel_cos(x)
+    Public Function Fresnel_cos(x) As Double
         'returns Fresnel's cos integral
         If x >= 0 Then
             Call FCS(x, Fr_c, Fr_s)
@@ -976,7 +1056,7 @@ Label40:
         End If
     End Function
 
-    Function Fresnel_sin(x)
+    Public Function Fresnel_sin(x) As Double
         'returns Fresnel's sin integral
         If x >= 0 Then
             Call FCS(x, Fr_c, Fr_s)
@@ -987,18 +1067,18 @@ Label40:
     End Function
 
 
-    Private Function xrad5(Optional digit_max)
-        Dim Constant As String
-        If IsMissing(digit_max) Then digit_max = DEFAULT_DIGITS__ 'Default
-        If DecSep = "" Then DecSep = Application.International(xlDecimalSeparator)
-        Constant = "2" + DecSep +
-"236067977499789696409173668731276235440618359611525724270897245410520925637804899414414408378782274969508176150773783504253267724447073863586360121533452708866778173191879165811276645322639856580535761350417533785003423392414064442086432539097252592627228876299517402440681611775908909498492371390729728898482088641542689894099131693577019748678884425089754132956183176921499977424801530434115035957668332512498815"
-        If digit_max > 415 Then digit_max = 415
-        xrad5 = Left(Constant, digit_max + 1)
-    End Function
+    'Private Function xrad5(Optional digit_max) As 
+    'Dim Constant As String
+    ' If IsMissing(digit_max) Then digit_max = DEFAULT_DIGITS__ 'Default
+    ''    If DecSep = "" Then DecSep = Application.International(xlDecimalSeparator)
+    '   Constant = "2" + DecSep +
+    '"236067977499789696409173668731276235440618359611525724270897245410520925637804899414414408378782274969508176150773783504253267724447073863586360121533452708866778173191879165811276645322639856580535761350417533785003423392414064442086432539097252592627228876299517402440681611775908909498492371390729728898482088641542689894099131693577019748678884425089754132956183176921499977424801530434115035957668332512498815"
+    'If digit_max > 415 Then digit_max = 415
+    '   xrad5 = Left(Constant, digit_max + 1)
+    'End Function
 
 
-    Function Zeta(x)
+    Public Function Zeta(x) As Double
         'Riemman's Zeta function
         Dim Cnk#, k%, N%, s#, S1#, coeff#
         n_max = 1000
@@ -1017,7 +1097,7 @@ Label40:
         Zeta = s / (1 - 2 ^ (1 - x))
     End Function
 
-    Sub HYGFX(ByVal A As Double, ByVal B As Double, ByVal C As Double, ByVal x As Double, ByRef hf As Double, ByRef ErrorMsg As String)
+    Public Sub HYGFX(ByVal A As Double, ByVal B As Double, ByVal C As Double, ByVal x As Double, ByRef hf As Double, ByRef ErrorMsg As String)
         ' ====================================================
         '       Purpose: Compute hypergeometric function F(a,b,c,x)
         '       Input :  a --- Parameter
@@ -1056,7 +1136,7 @@ Label40:
             hf = GC * GCAB / (GCA * GCB)
             Exit Sub
         ElseIf ((1 + x <= eps) And (Abs(C - A + B - 1) <= eps)) Then
-            G0 = Sqr(pi_) * 2 ^ (-A)
+            G0 = Sqrt(pi_) * 2 ^ (-A)
             G1 = HGamma(C)   ' Call HGamma(c, G1)
             G2 = HGamma(1 + A / 2 - B)   'Call HGamma(1 + a / 2 - b, G2)
             G3 = HGamma(0.5 + 0.5 * A)  'Call HGamma(0.5 + 0.5 * a, G3)
@@ -1221,7 +1301,7 @@ Label40:
         End If
     End Sub
 
-    Function Hypergeom(A, B, C, x)
+    Public Function Hypergeom(A, B, C, x) As Double
         ' Compute hypergeometric function
         '  a --- Parameter
         '  b --- Parameter
@@ -1240,8 +1320,9 @@ Label40:
     End Function
 
     '-------------------------------------------------------------------------------
-    Private Function HGamma(ByVal x As Double)
+    Private Function HGamma(ByVal x As Double) As Double
         'compute y = gamma(x)
+        Dim 
         Dim mantissa As Double, expo As Double, z As Double
         Const PI = 3.14159265358979
         If x <= 0 And x - Int(x) = 0 Then 'negative integer
@@ -1259,7 +1340,7 @@ If x < 0 Then
         HGamma = mantissa * 10 ^ expo
     End Function
 
-    Sub gamma_split(ByVal x As Double, ByRef mantissa As Double, ByRef expo As Double)
+    Public Sub gamma_split(ByVal x As Double, ByRef mantissa As Double, ByRef expo As Double)
         Dim z As Double, Cf(14) As Double, W As Double, i As Long, s As Double, p As Double
         Const DOUBLEPI As Double = 6.28318530717959
         Const G_ As Double = 4.7421875  '607/128
@@ -1280,7 +1361,7 @@ If x < 0 Then
         Cf(13) = -0.0000261908384015814
         Cf(14) = 0.00000368991826595316
 
-        W = Exp(G_) / Sqr(DOUBLEPI)
+        W = Exp(G_) / Sqrt(DOUBLEPI)
         s = Cf(0)
         For i = 1 To 14
             s = s + Cf(i) / (z + i)
