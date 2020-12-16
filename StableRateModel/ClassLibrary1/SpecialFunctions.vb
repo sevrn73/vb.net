@@ -283,7 +283,7 @@ Public Class SpecialFunctions
     'routines into other programs providing that the copyright is acknowledged.
     'We have modified only minimal parts for adapting to VBA.
 
-    Public Sub JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+    Public Sub JY01A(ByVal x As Double, ByVal BJ0 As Double, ByVal DJ0 As Double, ByVal BJ1 As Double, ByVal DJ1 As Double, ByVal BY0 As Double, ByVal DY0 As Double, ByVal BY1 As Double, ByVal DY1 As Double)
         '=======================================================
         ' Purpose: Compute Bessel functions J0(x), J1(x), Y0(x),
         '         Y1(x), and their derivatives
@@ -380,7 +380,7 @@ Public Class SpecialFunctions
             K0 = 12
             If (x >= 35.0#) Then K0 = 10
             If (x >= 50.0#) Then K0 = 8
-            t1 = x - 0.25 * PI
+            t1 = x - 0.25 * Pi
             P0 = 1.0#
             Q0 = -0.125 / x
             For k = 1 To K0
@@ -391,7 +391,7 @@ Public Class SpecialFunctions
             CU = Sqrt(RP2 / x)
             BJ0 = CU * (P0 * Cos(t1) - Q0 * Sin(t1))
             BY0 = CU * (P0 * Sin(t1) + Q0 * Cos(t1))
-            t2 = x - 0.75 * PI
+            t2 = x - 0.75 * Pi
             p1 = 1.0#
             q1 = 0.375 / x
             For k = 1 To K0
