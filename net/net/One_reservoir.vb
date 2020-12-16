@@ -256,7 +256,7 @@ Public Module One_reservoir
         StableRate_Pt12 = Sum
 
     End Function
-    Public Function Ptr12(ByVal N As Integer,
+    Public Function StableRate_Ptr12(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -289,7 +289,7 @@ Public Module One_reservoir
 
         Next j
 
-        Ptr12 = Sum
+        StableRate_Ptr12 = Sum
 
     End Function
 
