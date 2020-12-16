@@ -1,0 +1,9 @@
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\bin\Debug\netstandard2.0\lib.deps.json
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\bin\Debug\netstandard2.0\lib.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\bin\Debug\netstandard2.0\lib.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.vbprojAssemblyReference.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.AssemblyInfoInputs.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.AssemblyInfo.vb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.vbproj.CoreCompileInputs.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\lib\obj\Debug\netstandard2.0\lib.pdb

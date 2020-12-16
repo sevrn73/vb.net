@@ -1,0 +1,13 @@
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\bin\Debug\net.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\bin\Debug\net.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\bin\Debug\net.xml
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\bin\Debug\lib.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\bin\Debug\lib.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.vbprojAssemblyReference.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.Resources.resources
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.vbproj.GenerateResource.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.vbproj.CoreCompileInputs.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.vbproj.CopyComplete
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.xml
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\net\obj\Debug\net.pdb

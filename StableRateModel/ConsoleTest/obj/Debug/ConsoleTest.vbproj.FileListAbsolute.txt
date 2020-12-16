@@ -12,5 +12,5 @@ C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\Conso
 C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\ConsoleTest.vbproj.CopyComplete
 C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\ConsoleTest.xml
 C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\ConsoleTest.pdb
-C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\bin\Debug\ConsoleTest.exe
-C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\ConsoleTest.exe
+C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\bin\Debug\ConsoleTest.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\StableRateModel\ConsoleTest\obj\Debug\ConsoleTest.dll
