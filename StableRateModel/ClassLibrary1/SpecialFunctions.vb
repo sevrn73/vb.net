@@ -443,7 +443,7 @@ Public Class SpecialFunctions
             dj(1) = 0.5
             Exit Sub
         End If
-        Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+        Call JY01A(x) ', BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
         BJ(0) = BJ0
         BJ(1) = BJ1
         BY(0) = BY0
@@ -862,7 +862,7 @@ Public Class SpecialFunctions
         '           S --- S(x)
         ' =================================================
         'by Shanjie Zhang and Jianming Jin, 2001
-        Dim xa, PX, T, t2, r, m, SU, F0, F1, F, q, g, t0 As Double
+        Dim xa, PX, T, t2, r, m, SU, F0, F1, F, q, g, t0, C, s As Double
         Const eps = 0.000000000000001
         Const PI = 3.14159265358979
         xa = Abs(x)
