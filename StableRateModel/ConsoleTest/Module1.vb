@@ -26,9 +26,9 @@
         'Console.WriteLine("test: " + CStr(rhg))
         'Console.ReadKey(True)
 
-        Dim test_gl, test
+        Dim test_gl As Double
         'Dim test As String
-        test_gl = u7_excel.u7_Excel_functions_GL.GLV_IPO_p_open(p_bellow_atma:=60, p_out_atma:=50, t_C:=80, d_port_mm:=25)
+        test_gl = StableRateModel_nWBS.Qt11(N:=12, T:=86400, por:=0.2, k:=5 * 10 ^ (-15), mu:=0.0015, Ct:=2.96 * 10 ^ (-9), rw:=0.1, Bo:=1, re:=300, Pwf:=5066250, Po:=25331250, i:=2, h:=10) * 86400
         'test = JsonConvert.SerializeObject(test_esp)
         'test = u7_excel.u7_Excel_functions_ESP.ESP_head_m(qliq_m3day:=10, )
         Console.WriteLine("test: " + CStr(test_gl))

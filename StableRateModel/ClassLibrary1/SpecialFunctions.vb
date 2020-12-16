@@ -283,7 +283,7 @@ Public Class SpecialFunctions
     'routines into other programs providing that the copyright is acknowledged.
     'We have modified only minimal parts for adapting to VBA.
 
-    Public Sub JY01A(ByVal x As Double, ByVal BJ0 As Double, ByVal DJ0 As Double, ByVal BJ1 As Double, ByVal DJ1 As Double, ByVal BY0 As Double, ByVal DY0 As Double, ByVal BY1 As Double, ByVal DY1 As Double)
+    Public Sub JY01A(ByVal x As Double) ', ByVal BJ0 As Double, ByVal DJ0 As Double, ByVal BJ1 As Double, ByVal DJ1 As Double, ByVal BY0 As Double, ByVal DY0 As Double, ByVal BY1 As Double, ByVal DY1 As Double)
         '=======================================================
         ' Purpose: Compute Bessel functions J0(x), J1(x), Y0(x),
         '         Y1(x), and their derivatives
@@ -410,9 +410,9 @@ Public Class SpecialFunctions
     End Sub
 
 
-    Public Sub JYNA(ByVal N As Double, ByVal x As Double,
-                    ByVal nm As Double, ByVal BJ() As Double,
-                    ByVal dj() As Double, ByVal By() As Double, ByVal dy() As Double)
+    Public Sub JYNA(ByVal N As Double, ByVal x As Double) ',
+        'ByVal nm As Double, ByVal BJ() As Double,
+        'ByVal dj() As Double, ByVal By() As Double, ByVal dy() As Double)
         '  ========================================================== 
         '       Purpose: Compute Bessel functions Jn(x) & Yn(x) and
         '                their derivatives
@@ -430,13 +430,13 @@ Public Class SpecialFunctions
         '  =========================================================
         'by Shanjie Zhang and Jianming Jin, 2001
         Dim BJK, m, F1, F2, Cs, F, F0 As Double
-        ReDim BJ(N), By(N), dj(N), dy(N)
+        ReDim BJ(N), BY(N), dj(N), dy(N)
         nm = N
         If (x < 1.0E-100) Then
             For k = 0 To N
                 BJ(k) = 0#
                 dj(k) = 0#
-                By(k) = -1.0E+300
+                BY(k) = -1.0E+300
                 dy(k) = 1.0E+300
             Next
             BJ(0) = 1.0#
@@ -446,8 +446,8 @@ Public Class SpecialFunctions
         Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
         BJ(0) = BJ0
         BJ(1) = BJ1
-        By(0) = BY0
-        By(1) = BY1
+        BY(0) = BY0
+        BY(1) = BY1
         dj(0) = DJ0
         dj(1) = DJ1
         dy(0) = DY0
@@ -488,16 +488,16 @@ Public Class SpecialFunctions
         For k = 2 To nm
             dj(k) = BJ(k - 1) - k / x * BJ(k)
         Next
-        F0 = By(0)
-        F1 = By(1)
+        F0 = BY(0)
+        F1 = BY(1)
         For k = 2 To nm
             F = 2.0# * (k - 1.0#) / x * F1 - F0
-            By(k) = F
+            BY(k) = F
             F0 = F1
             F1 = F
         Next
         For k = 2 To nm
-            dy(k) = By(k - 1) - k * By(k) / x
+            dy(k) = BY(k - 1) - k * BY(k) / x
         Next
     End Sub
 
@@ -572,9 +572,9 @@ Public Class SpecialFunctions
         ENVJ = 0.5 * Log10(6.28 * N) - N * Log10(1.36 * x / N)
     End Function
 
-    Public Sub IK01A(ByVal x As Double, ByVal BI0 As Double, ByVal DI0 As Double,
-                     ByVal BI1 As Double, ByVal DI1 As Double, ByVal BK0 As Double,
-                     ByVal DK0 As Double, ByVal BK1 As Double, ByVal DK1 As Double)
+    Public Sub IK01A(ByVal x As Double) ', ByVal BI0 As Double, ByVal DI0 As Double,
+        'ByVal BI1 As Double, ByVal DI1 As Double, ByVal BK0 As Double,
+        'ByVal DK0 As Double, ByVal BK1 As Double, ByVal DK1 As Double)
         '=========================================================
         'Purpose: Compute modified Bessel functions I0(x), I1(1),
         '         K0(x) and K1(x), and their derivatives
@@ -685,7 +685,7 @@ Public Class SpecialFunctions
 
     End Sub
 
-    Public Sub IKNA(ByVal N As Double, ByVal x As Double, ByVal nm As Double, ByVal BI() As Double, ByVal Di() As Double, ByVal BK() As Double, ByVal DK() As Double)
+    Public Sub IKNA(ByVal N As Double, ByVal x As Double) ', ByVal nm As Double, ByVal BI() As Double, ByVal Di() As Double, ByVal BK() As Double, ByVal DK() As Double)
         ' ========================================================
         ' Purpose: Compute modified Bessel functions In(x) and
         '          Kn(x), and their derivatives
@@ -716,7 +716,7 @@ Public Class SpecialFunctions
             Di(1) = 0.5
             Exit Sub
         End If
-        Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+        Call IK01A(x) ', BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
         BI(0) = BI0
         BI(1) = BI1
         BK(0) = BK0
@@ -769,7 +769,7 @@ Public Class SpecialFunctions
         Next
     End Sub
 
-    Public Sub CISIA(ByVal x As Double, ByVal ci As Double, ByVal si As Double)
+    Public Sub CISIA(ByVal x As Double) ', ByVal ci As Double, ByVal si As Double)
         '=============================================
         ' Purpose: Compute cosine and sine integrals
         '          Si(x) and Ci(x)  ( x т 0 )
@@ -854,7 +854,7 @@ Public Class SpecialFunctions
         End If
     End Sub
 
-    Public Sub FCS(ByVal x As Double, ByVal C As Double, ByVal s As Double)
+    Public Sub FCS(ByVal x As Double) ', ByVal C As Double, ByVal s As Double)
         ' =================================================
         '  Purpose: Compute Fresnel integrals C(x) and S(x)
         '  Input :  x --- Argument of C(x) and S(x)
@@ -943,10 +943,10 @@ Public Class SpecialFunctions
     Public Function BesselJ(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'Bessel function first kind, order n, Jn(x)
         If N <= 1 Then
-            Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+            Call JY01A(x) ', BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselJ = BJ0 Else BesselJ = BJ1
         Else
-            Call JYNA(N, x, nm, BJ, dj, BY, dy)
+            Call JYNA(N, x) ', nm, BJ, dj, BY, dy)
             BesselJ = BJ(N)
         End If
     End Function
@@ -954,10 +954,10 @@ Public Class SpecialFunctions
     Public Function BesselY(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'Bessel function second kind, order n, Yn(x)
         If N <= 1 Then
-            Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+            Call JY01A(x) ', BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselY = BY0 Else BesselY = BY1
         Else
-            Call JYNA(N, x, nm, BJ, dj, BY, dy)
+            Call JYNA(N, x) ', nm, BJ, dj, BY, dy)
             BesselY = BY(N)
         End If
     End Function
@@ -965,10 +965,10 @@ Public Class SpecialFunctions
     Public Function BesseldJ(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'First Derivative of Bessel functions first kind, order n, J'n(x)
         If N <= 1 Then
-            Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+            Call JY01A(x) ', BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldJ = DJ0 Else BesseldJ = DJ1
         Else
-            Call JYNA(N, x, nm, BJ, dj, BY, dy)
+            Call JYNA(N, x) ', nm, BJ, dj, BY, dy)
             BesseldJ = dj(N)
         End If
     End Function
@@ -976,10 +976,10 @@ Public Class SpecialFunctions
     Public Function BesseldY(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'First Derivative of Bessel functions second kind, order n, Y'n(x)
         If N <= 1 Then
-            Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
+            Call JY01A(x) ', BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldY = DY0 Else BesseldY = DY1
         Else
-            Call JYNA(N, x, nm, BJ, dj, BY, dy)
+            Call JYNA(N, x) ', nm, BJ, dj, BY, dy)
             BesseldY = dy(N)
         End If
     End Function
@@ -987,10 +987,10 @@ Public Class SpecialFunctions
     Public Function BesselI(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'modified Bessel function 1° kind, order n, In(x)
         If N <= 1 Then
-            Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+            Call IK01A(x) ', BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesselI = BI0 Else BesselI = BI1
         Else
-            Call IKNA(N, x, nm, BI, Di, BK, DK)
+            Call IKNA(N, x) ', nm, BI, Di, BK, DK)
             BesselI = BI(N)
         End If
     End Function
@@ -998,10 +998,10 @@ Public Class SpecialFunctions
     Public Function BesseldI(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'derivative modified Bessel function 1° kind, order n, In(x)
         If N <= 1 Then
-            Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+            Call IK01A(x) ', BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesseldI = DI0 Else BesseldI = DI1
         Else
-            Call IKNA(N, x, nm, BI, Di, BK, DK)
+            Call IKNA(N, x) ', nm, BI, Di, BK, DK)
             BesseldI = Di(N)
         End If
     End Function
@@ -1009,10 +1009,10 @@ Public Class SpecialFunctions
     Public Function BesselK(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'modified Bessel function 2° kind, order n, In(x)
         If N <= 1 Then
-            Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+            Call IK01A(x) ', BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesselK = BK0 Else BesselK = BK1
         Else
-            Call IKNA(N, x, nm, BI, Di, BK, DK)
+            Call IKNA(N, x) ', nm, BI, Di, BK, DK)
             BesselK = BK(N)
         End If
     End Function
@@ -1020,10 +1020,10 @@ Public Class SpecialFunctions
     Public Function BesseldK(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'derivative of modified Bessel function 2° kind, order n, In(x)
         If N <= 1 Then
-            Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
+            Call IK01A(x) ', BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesseldK = DK0 Else BesseldK = DK1
         Else
-            Call IKNA(N, x, nm, BI, Di, BK, DK)
+            Call IKNA(N, x) ', nm, BI, Di, BK, DK)
             BesseldK = DK(N)
         End If
     End Function
@@ -1031,7 +1031,7 @@ Public Class SpecialFunctions
     Public Function CosIntegral(ByVal x As Double) As Double
         'returns cos integral ci(x)
         If x > 0 Then
-            Call CISIA(x, ci, si)
+            Call CISIA(x) ', ci, si)
             CosIntegral = ci
         Else
             CosIntegral = "?"
@@ -1041,7 +1041,7 @@ Public Class SpecialFunctions
     Public Function SinIntegral(ByVal x As Double) As Double
         'returns sin integral ci(x)
         If x >= 0 Then
-            Call CISIA(x, ci, si)
+            Call CISIA(x) ', ci, si)
             SinIntegral = si
         Else
             SinIntegral = "?"
@@ -1051,7 +1051,7 @@ Public Class SpecialFunctions
     Public Function Fresnel_cos(ByVal x As Double) As Double
         'returns Fresnel's cos integral
         If x >= 0 Then
-            Call FCS(x, Fr_c, Fr_s)
+            Call FCS(x) ', Fr_c, Fr_s)
             Fresnel_cos = Fr_c
         Else
             Fresnel_cos = "?"
@@ -1061,7 +1061,7 @@ Public Class SpecialFunctions
     Public Function Fresnel_sin(ByVal x As Double) As Double
         'returns Fresnel's sin integral
         If x >= 0 Then
-            Call FCS(x, Fr_c, Fr_s)
+            Call FCS(x) ', Fr_c, Fr_s)
             Fresnel_sin = Fr_s
         Else
             Fresnel_sin = "?"
