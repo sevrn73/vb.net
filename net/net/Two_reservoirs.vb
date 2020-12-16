@@ -1,7 +1,7 @@
 ﻿Option Explicit On
 Imports System.Math
 Public Module Two_reservoirs
-    Public Function Coef(ByVal N As Double, j As Integer)
+    Public Function StableRate_Coef(ByVal N As Double, j As Integer)
         Dim g(160) As Double, h(80) As Double
         Dim NH As Integer, SN As Double
         Dim k As Integer, k1 As Integer, k2 As Integer
@@ -46,10 +46,10 @@ Public Module Two_reservoirs
                 SN = -SN
             Next i
         End If
-        Coef = v(j)
+        StableRate_Coef = v(j)
     End Function
 
-    Public Function Pt211(ByVal N As Integer,
+    Public Function StableRate_Pt211(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k1 As Double,
                           ByVal por1 As Double,
@@ -91,18 +91,18 @@ Public Module Two_reservoirs
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Ps211(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_Ps211(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Pt211 = Sum
+        StableRate_Pt211 = Sum
 
     End Function
 
-    Public Function Ps211(ByVal k1 As Double,
+    Public Function StableRate_Ps211(ByVal k1 As Double,
                           ByVal por1 As Double,
                           ByVal mu1 As Double,
                           ByVal Ct1 As Double,
@@ -166,32 +166,32 @@ Public Module Two_reservoirs
 
         If i = 1 Then
 
-            Ps211 = q1
+            StableRate_Ps211 = q1
 
         End If
 
         If i = 2 Then
 
-            Ps211 = q2
+            StableRate_Ps211 = q2
 
         End If
 
         If i = 3 Then
 
             p1 = MULT1 * (CHISL1 / ZNAM1) * q1
-            Ps211 = p1
+            StableRate_Ps211 = p1
 
         End If
 
         If i = 4 Then
 
             p2 = MULT2 * (CHISL2 / ZNAM2) * q2
-            Ps211 = p2
+            StableRate_Ps211 = p2
 
         End If
 
     End Function
-    Public Function Psr211(ByVal k1 As Double,
+    Public Function StableRate_Psr211(ByVal k1 As Double,
                            ByVal por1 As Double,
                            ByVal mu1 As Double,
                            ByVal Ct1 As Double,
@@ -264,7 +264,7 @@ Public Module Two_reservoirs
 
             CHISL11 = spec.BesselK(xe1, 0) * spec.BesselI(x1, 0) - spec.BesselI(xe1, 0) * spec.BesselK(x1, 0)
             p1 = MULT1 * (CHISL11 / ZNAM1) * q1
-            Psr211 = p1
+            StableRate_Psr211 = p1
 
         End If
 
@@ -272,12 +272,12 @@ Public Module Two_reservoirs
 
             CHISL22 = spec.BesselK(xe2, 0) * spec.BesselI(x2, 0) - spec.BesselI(xe2, 0) * spec.BesselK(x2, 0)
             p2 = MULT2 * (CHISL22 / ZNAM2) * q2
-            Psr211 = p2
+            StableRate_Psr211 = p2
 
         End If
 
     End Function
-    Public Function Ptr211(ByVal N As Integer,
+    Public Function StableRate_Ptr211(ByVal N As Integer,
                            ByVal T As Double,
                            ByVal k1 As Double,
                            ByVal por1 As Double,
@@ -318,18 +318,18 @@ Public Module Two_reservoirs
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Psr211(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, r, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_Psr211(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, r, si, i)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        Ptr211 = Sum
+        StableRate_Ptr211 = Sum
 
     End Function
 
-    Public Function Ps212(ByVal k1 As Double,
+    Public Function StableRate_Ps212(ByVal k1 As Double,
                           ByVal por1 As Double,
                           ByVal mu1 As Double,
                           ByVal Ct1 As Double,
@@ -393,30 +393,30 @@ Public Module Two_reservoirs
 
         If i = 1 Then
 
-            Ps212 = q1
+            StableRate_Ps212 = q1
 
         End If
 
         If i = 2 Then
 
-            Ps212 = q2
+            StableRate_Ps212 = q2
 
         End If
 
         If i = 3 Then
 
-            Ps212 = A1 * q1
+            StableRate_Ps212 = A1 * q1
 
         End If
 
         If i = 4 Then
 
-            Ps212 = A2 * q2
+            StableRate_Ps212 = A2 * q2
 
         End If
 
     End Function
-    Public Function Pt212(ByVal N As Integer,
+    Public Function StableRate_Pt212(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k1 As Double,
                           ByVal por1 As Double,
@@ -456,17 +456,17 @@ Public Module Two_reservoirs
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Ps212(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_Ps212(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Pt212 = Sum
+        StableRate_Pt212 = Sum
 
     End Function
-    Public Function Ps222(ByVal k1 As Double,
+    Public Function StableRate_Ps222(ByVal k1 As Double,
                           ByVal por1 As Double,
                           ByVal mu1 As Double,
                           ByVal Ct1 As Double,
@@ -530,32 +530,32 @@ Public Module Two_reservoirs
 
         If i = 1 Then
 
-            Ps222 = q1
+            StableRate_Ps222 = q1
 
         End If
 
         If i = 2 Then
 
-            Ps222 = q2
+            StableRate_Ps222 = q2
 
         End If
 
         If i = 3 Then
 
             p1 = MULT1 * (CHISL1 / ZNAM1) * q1
-            Ps222 = p1
+            StableRate_Ps222 = p1
 
         End If
 
         If i = 4 Then
 
             p2 = MULT2 * (CHISL2 / ZNAM2) * q2
-            Ps222 = p2
+            StableRate_Ps222 = p2
 
         End If
 
     End Function
-    Public Function Pt222(ByVal N As Integer,
+    Public Function StableRate_Pt222(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k1 As Double,
                           ByVal por1 As Double,
@@ -595,18 +595,18 @@ Public Module Two_reservoirs
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Ps222(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_Ps222(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, si, i)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Pt222 = Sum
+        StableRate_Pt222 = Sum
 
     End Function
 
-    Public Function Psr222(ByVal k1 As Double,
+    Public Function StableRate_Psr222(ByVal k1 As Double,
                            ByVal por1 As Double,
                            ByVal mu1 As Double,
                            ByVal Ct1 As Double,
@@ -677,7 +677,7 @@ Public Module Two_reservoirs
 
             CHISL11 = spec.BesselK(xe1, 1) * spec.BesselI(x1, 0) + spec.BesselI(xe1, 1) * spec.BesselK(x1, 0)
             p1 = MULT1 * (CHISL11 / ZNAM1) * q1
-            Psr222 = p1
+            StableRate_Psr222 = p1
 
         End If
 
@@ -685,12 +685,12 @@ Public Module Two_reservoirs
 
             CHISL22 = spec.BesselK(xe2, 1) * spec.BesselI(x2, 0) + spec.BesselI(xe2, 1) * spec.BesselK(x2, 0)
             p2 = MULT2 * (CHISL22 / ZNAM2) * q2
-            Psr222 = p2
+            StableRate_Psr222 = p2
 
         End If
 
     End Function
-    Public Function Ptr222(ByVal N As Integer,
+    Public Function StableRate_Ptr222(ByVal N As Integer,
                            ByVal T As Double,
                            ByVal k1 As Double,
                            ByVal por1 As Double,
@@ -731,14 +731,14 @@ Public Module Two_reservoirs
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Psr222(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, r, si, i)
-            Vi = Coef(N, j)
+            fi = StableRate_Psr222(k1, por1, mu1, Ct1, Bo1, re1, h1, Po1, rw1, k2, por2, mu2, Ct2, Bo2, re2, h2, Po2, rw2, q, r, si, i)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        Ptr222 = Sum
+        StableRate_Ptr222 = Sum
 
     End Function
 

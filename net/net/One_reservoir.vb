@@ -36,7 +36,7 @@ Public Module One_reservoir
         StableRate_Ps11 = p
 
     End Function
-    Public Function Psr11(ByVal k As Double,
+    Public Function StableRate_Psr11(ByVal k As Double,
                           ByVal por As Double,
                           ByVal mu As Double,
                           ByVal Ct As Double,
@@ -71,11 +71,11 @@ Public Module One_reservoir
 
         p = MULT * (CHISL / ZNAM)
 
-        Psr11 = p
+        StableRate_Psr11 = p
 
     End Function
 
-    Public Function Pt11(ByVal N As Integer,
+    Public Function StableRate_Pt11(ByVal N As Integer,
                          ByVal T As Double,
                          ByVal k As Double,
                          ByVal por As Double,
@@ -101,16 +101,16 @@ Public Module One_reservoir
 
             si = (Log(2) / T) * j
             fi = StableRate_Ps11(k, por, mu, Ct, Bo, rw, re, h, Po, q, si)
-            Vi = Coef(N, j)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Pt11 = Sum
+        StableRate_Pt11 = Sum
 
     End Function
-    Public Function Ptr11(ByVal N As Integer,
+    Public Function StableRate_Ptr11(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -137,18 +137,18 @@ Public Module One_reservoir
 
             si = (Log(2) / T) * j
             '    Psr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, r, s As Double)
-            fi = Psr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, r, si)
-            Vi = Coef(N, j)
+            fi = StableRate_Psr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, r, si)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        Ptr11 = Sum
+        StableRate_Ptr11 = Sum
 
     End Function
 
-    Public Function Ps12(ByVal k As Double,
+    Public Function StableRate_Ps12(ByVal k As Double,
                          ByVal por As Double,
                          ByVal mu As Double,
                          ByVal Ct As Double,
@@ -180,10 +180,10 @@ Public Module One_reservoir
 
         p = MULT * (CHISL / ZNAM)
 
-        Ps12 = p
+        StableRate_Ps12 = p
 
     End Function
-    Public Function Psr12(ByVal k As Double,
+    Public Function StableRate_Psr12(ByVal k As Double,
                           ByVal por As Double,
                           ByVal mu As Double,
                           ByVal Ct As Double,
@@ -218,10 +218,10 @@ Public Module One_reservoir
 
         p = MULT * (CHISL / ZNAM)
 
-        Psr12 = p
+        StableRate_Psr12 = p
 
     End Function
-    Public Function Pt12(ByVal N As Integer,
+    Public Function StableRate_Pt12(ByVal N As Integer,
                          ByVal T As Double,
                          ByVal k As Double,
                          ByVal por As Double,
@@ -246,14 +246,14 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Ps12(k, por, mu, Ct, Bo, rw, re, h, Po, q, si)
-            Vi = Coef(N, j)
+            fi = StableRate_Ps12(k, por, mu, Ct, Bo, rw, re, h, Po, q, si)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Pt12 = Sum
+        StableRate_Pt12 = Sum
 
     End Function
     Public Function Ptr12(ByVal N As Integer,
@@ -282,8 +282,8 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Psr12(k, por, mu, Ct, Bo, rw, re, h, Po, q, r, si)
-            Vi = Coef(N, j)
+            fi = StableRate_Psr12(k, por, mu, Ct, Bo, rw, re, h, Po, q, r, si)
+            Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
@@ -293,7 +293,7 @@ Public Module One_reservoir
 
     End Function
 
-    Public Function Qs11(ByVal k As Double,
+    Public Function StableRate_Qs11(ByVal k As Double,
                          ByVal por As Double,
                          ByVal mu As Double,
                          ByVal Ct As Double,
@@ -330,7 +330,7 @@ Public Module One_reservoir
             CHISL = spec.BesselK(xe, 0) * spec.BesselI(xw, 0) - spec.BesselI(xe, 0) * spec.BesselK(xw, 0)
 
             p = MULT * (CHISL / ZNAM)
-            Qs11 = p
+            StableRate_Qs11 = p
 
         End If
 
@@ -341,13 +341,13 @@ Public Module One_reservoir
             ZNAM = spec.BesselI(xw, 0) * spec.BesselK(xe, 0) - spec.BesselI(xe, 0) * spec.BesselK(xw, 0)
 
             q = MULT * (CHISL / ZNAM)
-            Qs11 = q
+            StableRate_Qs11 = q
 
         End If
 
     End Function
 
-    Public Function Qt11(ByVal N As Integer,
+    Public Function StableRate_Qt11(ByVal N As Integer,
                          ByVal T As Double,
                          ByVal k As Double,
                          ByVal por As Double,
@@ -376,12 +376,12 @@ Public Module One_reservoir
             For j = 1 To N
 
                 si = (Log(2) / T) * j
-                fi = Qs11(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
-                Vi = Coef(N, j)
+                fi = StableRate_Qs11(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
+                Vi = StableRate_Coef(N, j)
                 r = (Log(2) / T) * Vi * fi
                 Sum = Sum + r
 
-                Qt11 = Sum
+                StableRate_Qt11 = Sum
 
             Next j
         End If
@@ -390,12 +390,12 @@ Public Module One_reservoir
             For j = 1 To N
 
                 si = (Log(2) / T) * j
-                fi = Qs11(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
-                Vi = Coef(N, j)
+                fi = StableRate_Qs11(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
+                Vi = StableRate_Coef(N, j)
                 r = (Log(2) / T) * Vi * fi
                 Sum = Sum + r
 
-                Qt11 = Sum
+                StableRate_Qt11 = Sum
 
             Next j
 
@@ -403,7 +403,7 @@ Public Module One_reservoir
 
     End Function
 
-    Public Function Qtr11(ByVal N As Integer,
+    Public Function StableRate_Qtr11(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -428,18 +428,18 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Qsr11(k, por, mu, Ct, Bo, rw, re, Pwf, Po, x, si)
-            Vi = Coef(N, j)
+            fi = StableRate_Qsr11(k, por, mu, Ct, Bo, rw, re, Pwf, Po, x, si)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Qtr11 = Sum
+        StableRate_Qtr11 = Sum
 
     End Function
 
-    Public Function Qsr11(ByVal k As Double,
+    Public Function StableRate_Qsr11(ByVal k As Double,
                           ByVal por As Double,
                           ByVal mu As Double,
                           ByVal Ct As Double,
@@ -473,11 +473,11 @@ Public Module One_reservoir
 
         p = MULT * (CHISL / ZNAM)
 
-        Qsr11 = p
+        StableRate_Qsr11 = p
 
     End Function
 
-    Public Function Qs12(ByVal k As Double,
+    Public Function StableRate_Qs12(ByVal k As Double,
                          ByVal por As Double,
                          ByVal mu As Double,
                          ByVal Ct As Double,
@@ -514,7 +514,7 @@ Public Module One_reservoir
             CHISL = spec.BesselI(xw, 0) * spec.BesselK(xe, 1) + spec.BesselI(xe, 1) * spec.BesselK(xw, 0)
 
             p = MULT * (CHISL / ZNAM)
-            Qs12 = p
+            StableRate_Qs12 = p
 
         End If
 
@@ -525,13 +525,13 @@ Public Module One_reservoir
             ZNAM = spec.BesselI(xw, 0) * spec.BesselK(xe, 1) + spec.BesselI(xe, 1) * spec.BesselK(xw, 0)
 
             q = MULT * (CHISL / ZNAM)
-            Qs12 = q
+            StableRate_Qs12 = q
 
         End If
 
     End Function
 
-    Public Function Qt12(ByVal N As Integer,
+    Public Function StableRate_Qt12(ByVal N As Integer,
                          ByVal T As Double,
                          ByVal k As Double,
                          ByVal por As Double,
@@ -560,12 +560,12 @@ Public Module One_reservoir
             For j = 1 To N
 
                 si = (Log(2) / T) * j
-                fi = Qs12(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
-                Vi = Coef(N, j)
+                fi = StableRate_Qs12(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
+                Vi = StableRate_Coef(N, j)
                 r = (Log(2) / T) * Vi * fi
                 Sum = Sum + r
 
-                Qt12 = Sum
+                StableRate_Qt12 = Sum
 
             Next j
         End If
@@ -574,19 +574,19 @@ Public Module One_reservoir
             For j = 1 To N
 
                 si = (Log(2) / T) * j
-                fi = Qs12(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
-                Vi = Coef(N, j)
+                fi = StableRate_Qs12(k, por, mu, Ct, Bo, rw, re, h, Pwf, Po, si, i)
+                Vi = StableRate_Coef(N, j)
                 r = (Log(2) / T) * Vi * fi
                 Sum = Sum + r
 
-                Qt12 = Sum
+                StableRate_Qt12 = Sum
 
             Next j
 
         End If
 
     End Function
-    Public Function Qsr12(ByVal k As Double,
+    Public Function StableRate_Qsr12(ByVal k As Double,
                           ByVal por As Double,
                           ByVal mu As Double,
                           ByVal Ct As Double,
@@ -620,11 +620,11 @@ Public Module One_reservoir
 
         p = MULT * (CHISL / ZNAM)
 
-        Qsr12 = p
+        StableRate_Qsr12 = p
 
     End Function
 
-    Public Function Qtr12(ByVal N As Integer,
+    Public Function StableRate_Qtr12(ByVal N As Integer,
                           ByVal T As Double,
                           ByVal k As Double,
                           ByVal por As Double,
@@ -649,14 +649,14 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = Qsr12(k, por, mu, Ct, Bo, rw, re, Pwf, Po, x, si)
-            Vi = Coef(N, j)
+            fi = StableRate_Qsr12(k, por, mu, Ct, Bo, rw, re, Pwf, Po, x, si)
+            Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        Qtr12 = Sum
+        StableRate_Qtr12 = Sum
 
     End Function
 
