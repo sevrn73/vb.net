@@ -453,7 +453,7 @@ Public Class SpecialFunctions
         dy(0) = DY0
         dy(1) = DY1
         If (N <= 1) Then Exit Sub
-        If (N < Int(0.9 * x)) Then
+        If (N < Convert.ToInt32(0.9 * x)) Then
             For k = 2 To N
                 BJK = 2.0# * (k - 1.0#) / x * BJ1 - BJ0
                 BJ(k) = BJK
@@ -514,7 +514,7 @@ Public Class SpecialFunctions
         'by Shanjie Zhang and Jianming Jin, 2001
         Dim A0, N0, F0, n1, F1, nn, F As Double
         A0 = Abs(x)
-        N0 = Int(1.1 * A0) + 1
+        N0 = Convert.ToInt32(1.1 * A0) + 1
         F0 = ENVJ(N0, A0) - mp
         n1 = N0 + 5
         F1 = ENVJ(n1, A0) - mp
@@ -548,7 +548,7 @@ Public Class SpecialFunctions
         EJN = ENVJ(N, A0)
         If (EJN <= HMP) Then
             obj = mp
-            N0 = Int(1.1 * A0) + 1 'bug for x<0.1 - VL, 2-8.2002
+            N0 = Convert.ToInt32(1.1 * A0) + 1 'bug for x<0.1 - VL, 2-8.2002
         Else
             obj = HMP + EJN
             N0 = N
@@ -726,7 +726,7 @@ Public Class SpecialFunctions
         DK(0) = DK0
         DK(1) = DK1
         If (N <= 1) Then Exit Sub
-        If (x > 40.0# And N < Int(0.25 * x)) Then
+        If (x > 40.0# And N < Convert.ToInt32(0.25 * x)) Then
             h0 = BI0
             h1 = BI1
             For k = 2 To N
@@ -803,7 +803,7 @@ Public Class SpecialFunctions
                 If (Abs(xr) < Abs(si) * eps) Then Exit For
             Next
         ElseIf (x <= 32.0#) Then
-            m = Int(47.2 + 0.82 * x)
+            m = Convert.ToInt32(47.2 + 0.82 * x)
             XA1 = 0#
             XA0 = 1.0E-100
             For k = m To 1 Step -1
@@ -893,7 +893,7 @@ Public Class SpecialFunctions
                 End If
             Next
         ElseIf (xa < 4.5) Then
-            m = Int(42.0# + 1.75 * T)
+            m = Convert.ToInt32(42.0# + 1.75 * T)
             SU = 0#
             C = 0#
             s = 0#
@@ -901,7 +901,7 @@ Public Class SpecialFunctions
             F0 = 1.0E-100
             For k = m To 0 Step -1
                 F = (2.0# * k + 3.0#) * F0 / T - F1
-                If (k = Int(k / 2) * 2) Then
+                If (k = Convert.ToInt32(k / 2) * 2) Then
                     C = C + F
                 Else
                     s = s + F
@@ -926,7 +926,7 @@ Public Class SpecialFunctions
                 r = -0.25 * r * (4.0# * k + 1.0#) * (4.0# * k - 1.0#) / t2
                 g = g + r
             Next
-            t0 = T - Int(T / (2.0# * PI)) * 2.0# * PI
+            t0 = T - Convert.ToInt32(T / (2.0# * PI)) * 2.0# * PI
             C = 0.5 + (F * Sin(t0) - g * Cos(t0)) / PX
             s = 0.5 - (F * Cos(t0) + g * Sin(t0)) / PX
         End If
@@ -1117,12 +1117,12 @@ Public Class SpecialFunctions
 
         EL = 0.577215664901533
         eps = 0.000000000000001
-        L0 = (C = Int(C)) And (C < 0)
+        L0 = (C = Convert.ToInt32(C)) And (C < 0)
         L1 = ((1 - x) < eps) And ((C - A - B) <= 0)
-        l2 = (A = Int(A)) And (A < 0)
-        l3 = (B = Int(B)) And (B < 0)
-        l4 = (C - A = Int(C - A)) And (C - A <= 0)
-        L5 = (C - B = Int(C - B)) And (C - B <= 0)
+        l2 = (A = Convert.ToInt32(A)) And (A < 0)
+        l3 = (B = Convert.ToInt32(B)) And (B < 0)
+        l4 = (C - A = Convert.ToInt32(C - A)) And (C - A <= 0)
+        L5 = (C - B = Convert.ToInt32(C - B)) And (C - B <= 0)
         If (L0 Or L1) Then
             ErrorMsg = "The hypergeometric series is divergent"
             Exit Sub
@@ -1146,8 +1146,8 @@ Public Class SpecialFunctions
             hf = G0 * G1 / (G2 * G3)
             Exit Sub
         ElseIf (l2 Or l3) Then
-            If (l2) Then nm = Int(Abs(A))
-            If (l3) Then nm = Int(Abs(B))
+            If (l2) Then nm = Convert.ToInt32(Abs(A))
+            If (l3) Then nm = Convert.ToInt32(Abs(B))
             hf = 1
             r = 1
             For k = 1 To nm
@@ -1156,8 +1156,8 @@ Public Class SpecialFunctions
             Next k
             Exit Sub
         ElseIf (l4 Or L5) Then
-            If (l4) Then nm = Int(Abs(C - A))
-            If (L5) Then nm = Int(Abs(C - B))
+            If (l4) Then nm = Convert.ToInt32(Abs(C - A))
+            If (L5) Then nm = Convert.ToInt32(Abs(C - B))
             hf = 1
             r = 1
             For k = 1 To nm
@@ -1180,8 +1180,8 @@ Public Class SpecialFunctions
         End If
         If (x >= 0.75) Then
             GM = 0
-            If (Abs(C - A - B - Int(C - A - B)) < 0.000000000000001) Then
-                m = Int(C - A - B)
+            If (Abs(C - A - B - Convert.ToInt32(C - A - B)) < 0.000000000000001) Then
+                m = Convert.ToInt32(C - A - B)
                 GA = HGamma(A) '  Call HGamma(a, GA)
                 GB = HGamma(B)   'Call HGamma(b, GB)
                 GC = HGamma(C)    'Call HGamma(c, GC)
@@ -1328,7 +1328,7 @@ Public Class SpecialFunctions
         Dim tmp, y, E As Double
         Dim mantissa As Double, expo As Double, z As Double
         Const PI = 3.14159265358979
-        If x <= 0 And x - Int(x) = 0 Then 'negative integer
+        If x <= 0 And x - Convert.ToInt32(x) = 0 Then 'negative integer
             HGamma = "?" : Exit Function
         End If
         z = Abs(x)
@@ -1336,7 +1336,7 @@ Public Class SpecialFunctions
         If x < 0 Then
             tmp = z * Sin(PI * z)
             y = -PI / (mantissa * tmp)
-            E = Int(Log(Abs(y)) / Log(10.0#))
+            E = Convert.ToInt32(Log(Abs(y)) / Log(10.0#))
             mantissa = y * 10 ^ -E
             expo = E - expo
         End If
@@ -1372,11 +1372,11 @@ Public Class SpecialFunctions
         s = s / W
         p = Log((z + G_ + 0.5) / Exp(1)) * (z + 0.5) / Log(10)
         'split in mantissa and exponent to avoid overflow
-        expo = Int(p)
-        p = p - Int(p)
+        expo = Convert.ToInt32(p)
+        p = p - Convert.ToInt32(p)
         mantissa = 10 ^ p * s
         'rescaling
-        p = Int(Log(mantissa) / Log(10))
+        p = Convert.ToInt32(Log(mantissa) / Log(10))
         mantissa = mantissa * 10 ^ -p
         expo = expo + p
     End Sub
