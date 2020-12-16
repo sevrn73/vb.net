@@ -685,7 +685,7 @@ Public Class SpecialFunctions
 
     End Sub
 
-    Public Sub IKNA(ByVal N As Double, ByVal x As Double, ByVal nm As Double, ByVal BI As Double, Di, BK, DK)
+    Public Sub IKNA(ByVal N As Double, ByVal x As Double, ByVal nm As Double, ByVal BI() As Double, ByVal Di() As Double, ByVal BK() As Double, ByVal DK() As Double)
         ' ========================================================
         ' Purpose: Compute modified Bessel functions In(x) and
         '          Kn(x), and their derivatives
@@ -702,6 +702,7 @@ Public Class SpecialFunctions
         '          point for backward recurrence
         ' ========================================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim h0, h1, h, m, F0, F1, F, G0, G1, S0, g As Double
         ReDim BI(N), Di(N), BK(N), DK(N)
         nm = N
         If (x <= 1.0E-100) Then
@@ -768,7 +769,7 @@ Public Class SpecialFunctions
         Next
     End Sub
 
-    Public Sub CISIA(x, ci, si)
+    Public Sub CISIA(ByVal x As Double, ByVal ci As Double, ByVal si As Double)
         '=============================================
         ' Purpose: Compute cosine and sine integrals
         '          Si(x) and Ci(x)  ( x т 0 )
@@ -777,6 +778,7 @@ Public Class SpecialFunctions
         '          SI --- Si(x)
         '=============================================
         'by Shanjie Zhang and Jianming Jin, 2001
+        Dim p2, EL, eps, x2, xr, m, XA1, XA0, xa, XS, XG1, XCS, XSS, XG2, Xf, XG As Double
         Dim BJ(101)
         p2 = 1.5707963267949
         EL = 0.577215664901533
@@ -852,7 +854,7 @@ Public Class SpecialFunctions
         End If
     End Sub
 
-    Public Sub FCS(x, C, s)
+    Public Sub FCS(ByVal x As Double, ByVal C As Double, ByVal s As Double)
         ' =================================================
         '  Purpose: Compute Fresnel integrals C(x) and S(x)
         '  Input :  x --- Argument of C(x) and S(x)
@@ -860,7 +862,7 @@ Public Class SpecialFunctions
         '           S --- S(x)
         ' =================================================
         'by Shanjie Zhang and Jianming Jin, 2001
-
+        Dim xa, PX, T, t2, r, m, SU, F0, F1, F, q, g, t0 As Double
         Const eps = 0.000000000000001
         Const PI = 3.14159265358979
         xa = Abs(x)
@@ -883,7 +885,12 @@ Public Class SpecialFunctions
             For k = 1 To 50
                 r = -0.5 * r * (4.0# * k - 1.0#) / k / (2.0# * k + 1.0#) / (4.0# * k + 3.0#) * t2
                 s = s + r
-                If (Abs(r) < Abs(s) * eps) Then GoTo Label40
+                If (Abs(r) < Abs(s) * eps) Then
+                    If (x < 0#) Then
+                        C = -C
+                        s = -s
+                    End If
+                End If
             Next
         ElseIf (xa < 4.5) Then
             m = Int(42.0# + 1.75 * T)
@@ -903,7 +910,7 @@ Public Class SpecialFunctions
                 F1 = F0
                 F0 = F
             Next
-            q = Sqr(SU)
+            q = Sqrt(SU)
             C = C * xa / q
             s = s * xa / q
         Else
@@ -924,11 +931,6 @@ Public Class SpecialFunctions
             s = 0.5 - (F * Cos(t0) + g * Sin(t0)) / PX
         End If
         Exit Sub
-Label40:
-        If (x < 0#) Then
-            C = -C
-            s = -s
-        End If
 
     End Sub
 
@@ -1078,9 +1080,10 @@ Label40:
     'End Function
 
 
-    Public Function Zeta(x) As Double
+    Public Function Zeta(ByVal x As Double) As Double
         'Riemman's Zeta function
-        Dim Cnk#, k%, N%, s#, S1#, coeff#
+        Dim Cnk, s, S1, coeff, tiny As Double
+        Dim k, N, n_max As Integer
         n_max = 1000
         tiny = 0.0000000000000001
         N = 0 : s = 0
@@ -1219,10 +1222,10 @@ Label40:
                         RP = PA + Pb + 2 * EL + SP + SM + Log(1 - x)
                         R1 = R1 * (A + m + k - 1) * (B + m + k - 1) / (k * (m + k)) * (1 - x)
                         F1 = F1 + R1 * RP
-                        If (Abs(F1 - HW) < Abs(F1) * eps) Then GoTo 60
+                        If (Abs(F1 - HW) < Abs(F1) * eps) Then Exit For
                         HW = F1
                     Next k
-60:                 hf = F0 * c0 + F1 * C1
+                    hf = F0 * c0 + F1 * C1
                 ElseIf (m < 0) Then
                     m = -m
                     c0 = GM * GC / (GA * GB * (1 - x) ^ m)
@@ -1244,10 +1247,10 @@ Label40:
                         RP = PA + Pb + 2 * EL + SP - SM + Log(1 - x)
                         R1 = R1 * (A + k - 1) * (B + k - 1) / (k * (m + k)) * (1 - x)
                         F1 = F1 + R1 * RP
-                        If (Abs(F1 - HW) < (Abs(F1) * eps)) Then GoTo 85
+                        If (Abs(F1 - HW) < (Abs(F1) * eps)) Then Exit For
                         HW = F1
                     Next k
-85:                 hf = F0 * c0 + F1 * C1
+                    hf = F0 * c0 + F1 * C1
                 End If
             Else
                 GA = HGamma(A)    'Call HGamma(a, GA)
@@ -1266,10 +1269,10 @@ Label40:
                     r0 = r0 * (A + k - 1) * (B + k - 1) / (k * (A + B - C + k)) * (1 - x)
                     R1 = R1 * (C - A + k - 1) * (C - B + k - 1) / (k * (C - A - B + k)) * (1 - x)
                     hf = hf + r0 + R1
-                    If (Abs(hf - HW) < (Abs(hf) * eps)) Then GoTo 95
+                    If (Abs(hf - HW) < (Abs(hf) * eps)) Then Exit For
                     HW = hf
                 Next k
-95:             hf = hf + c0 + C1
+                hf = hf + c0 + C1
             End If
         Else
             A0 = 1
@@ -1283,10 +1286,10 @@ Label40:
             For k = 1 To 250
                 r = r * (A + k - 1) * (B + k - 1) / (k * (C + k - 1)) * x
                 hf = hf + r
-                If (Abs(hf - HW) <= (Abs(hf) * eps)) Then GoTo 105
+                If (Abs(hf - HW) <= (Abs(hf) * eps)) Then Exit For
                 HW = hf
             Next k
-105:        hf = A0 * hf
+            hf = A0 * hf
         End If
         If (x1 < 0) Then
             x = x1
@@ -1301,7 +1304,7 @@ Label40:
         End If
     End Sub
 
-    Public Function Hypergeom(A, B, C, x) As Double
+    Public Function Hypergeom(ByVal A As Double, ByVal B As Double, ByVal C As Double, ByVal x As Double) As Double
         ' Compute hypergeometric function
         '  a --- Parameter
         '  b --- Parameter
@@ -1322,15 +1325,15 @@ Label40:
     '-------------------------------------------------------------------------------
     Private Function HGamma(ByVal x As Double) As Double
         'compute y = gamma(x)
-        Dim 
+        Dim tmp, y, E As Double
         Dim mantissa As Double, expo As Double, z As Double
         Const PI = 3.14159265358979
         If x <= 0 And x - Int(x) = 0 Then 'negative integer
             HGamma = "?" : Exit Function
         End If
         z = Abs(x)
-        gamma_split z, mantissa, expo
-If x < 0 Then
+        gamma_split(z, mantissa, expo)
+        If x < 0 Then
             tmp = z * Sin(PI * z)
             y = -PI / (mantissa * tmp)
             E = Int(Log(Abs(y)) / Log(10.0#))
