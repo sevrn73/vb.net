@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "SXlDqEEp/zdONhJH8aeXE1pu5DkcifNytbMOABVR2A7dr4T5ViHA9X9pPz8661lfP6VgIshWnJuuUdQhZWjjsg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sevrn\\Desktop\\vb.net\\vb.net\\StableRateModel\\ClassLibrary1\\ClassLibrary1.vbproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sevrn\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Sevrn\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
