@@ -6,11 +6,25 @@
 
 Imports System.Math
 Public Class SpecialFunctions
+    Public BJ0 As Double
+    Public DJ0 As Double
+    Public BJ1 As Double
+    Public DJ1 As Double
+    Public BY0 As Double
+    Public DY0 As Double
+    Public BY1 As Double
+    Public DY1 As Double
+    Public nm As Double
+    Public BJ As Double
+    Public dj As Double
+    Public By As Double
+    Public dy As Double
+
 
     Const pi_ = 3.14159265358979
-    Public Sub Class_init(Optional ByVal a As Double = 0,
+    Public Sub Class_init(Optional ByVal BJ0_ As Double = 0,
                           )
-
+        BJ0 = BJ0_
     End Sub
     Public Function errfun(ByVal x As Double) As Double
         'returns the integral of Gauss' standard error function
@@ -838,13 +852,12 @@ Label40:
 
     '*****End of Library for computation of Special Functions*****
 
-    Private Function Log10(x)
+    Private Function Log10(ByVal x As Double) As Double
         Log10 = Log(x) / Log(10.0#)
     End Function
 
-    Function BesselJ(x, Optional N)
+    Public Function BesselJ(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'Bessel function first kind, order n, Jn(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselJ = BJ0 Else BesselJ = BJ1
@@ -854,9 +867,8 @@ Label40:
         End If
     End Function
 
-    Function BesselY(x, Optional N)
+    Public Function BesselY(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'Bessel function second kind, order n, Yn(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesselY = BY0 Else BesselY = BY1
@@ -866,9 +878,8 @@ Label40:
         End If
     End Function
 
-    Function BesseldJ(x, Optional N)
+    Public Function BesseldJ(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'First Derivative of Bessel functions first kind, order n, J'n(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldJ = DJ0 Else BesseldJ = DJ1
@@ -878,9 +889,8 @@ Label40:
         End If
     End Function
 
-    Function BesseldY(x, Optional N)
+    Public Function BesseldY(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'First Derivative of Bessel functions second kind, order n, Y'n(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call JY01A(x, BJ0, DJ0, BJ1, DJ1, BY0, DY0, BY1, DY1)
             If N = 0 Then BesseldY = DY0 Else BesseldY = DY1
@@ -890,9 +900,8 @@ Label40:
         End If
     End Function
 
-    Function BesselI(x, Optional N)
+    Public Function BesselI(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'modified Bessel function 1° kind, order n, In(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesselI = BI0 Else BesselI = BI1
@@ -902,9 +911,8 @@ Label40:
         End If
     End Function
 
-    Function BesseldI(x, Optional N)
+    Public Function BesseldI(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'derivative modified Bessel function 1° kind, order n, In(x)
-        If IsMissing(N) Then N = 0
         If N <= 1 Then
             Call IK01A(x, BI0, DI0, BI1, DI1, BK0, DK0, BK1, DK1)
             If N = 0 Then BesseldI = DI0 Else BesseldI = DI1
@@ -914,7 +922,7 @@ Label40:
         End If
     End Function
 
-    Function BesselK(x, Optional N)
+    Public Function BesselK(ByVal x As Double, Optional ByVal N As Double = 0) As Double
         'modified Bessel function 2° kind, order n, In(x)
         If IsMissing(N) Then N = 0
         If N <= 1 Then
@@ -926,7 +934,7 @@ Label40:
         End If
     End Function
 
-    Function BesseldK(x, Optional N)
+    Public Function BesseldK(x, Optional N)
         'derivative of modified Bessel function 2° kind, order n, In(x)
         If IsMissing(N) Then N = 0
         If N <= 1 Then
@@ -938,7 +946,7 @@ Label40:
         End If
     End Function
 
-    Function CosIntegral(x)
+    Public Function CosIntegral(ByVal x As Double) As Double
         'returns cos integral ci(x)
         If x > 0 Then
             Call CISIA(x, ci, si)
