@@ -742,5 +742,166 @@ Public Module Two_reservoirs
 
     End Function
 
+    Public Function StableRate_Qt211(ByVal N As Integer, ByVal T As Double,
+                                     ByVal k1 As Double,
+                                     ByVal por1 As Double,
+                                     ByVal mu1 As Double,
+                                     ByVal Ct1 As Double,
+                                     ByVal Bo1 As Double,
+                                     ByVal re1 As Double,
+                                     ByVal h1 As Double,
+                                     ByVal Po1 As Double,
+                                     ByVal rw1 As Double,
+                                     ByVal k2 As Double,
+                                     ByVal por2 As Double,
+                                     ByVal mu2 As Double,
+                                     ByVal Ct2 As Double,
+                                     ByVal Bo2 As Double,
+                                     ByVal re2 As Double,
+                                     ByVal h2 As Double,
+                                     ByVal Po2 As Double,
+                                     ByVal rw2 As Double,
+                                     ByVal Pwf As Double,
+                                     ByVal i As Integer) As Double
+        'Вычисляет значение забойного давления от времени для двухпластовой скважины, все переменные размерности[Си],
+        'выполняя обратное
+        'преобразование Лапласа и переводя P(s)-->P(t)
+        'T - значение времени в секундах
+        'N - точность
+        'Условие постоянного давления на границе пласта
+
+        Dim q1, q2, q As Double
+
+        q1 = StableRate_Qt11(N, T, k1, por1, mu1, Ct1, Bo1, rw1, re1, h1, Pwf, Po1, 2)
+        q2 = StableRate_Qt11(N, T, k2, por2, mu2, Ct2, Bo2, rw2, re2, h2, Pwf, Po2, 2)
+        q = q1 + q2
+
+        If i = 1 Then
+
+            StableRate_Qt211 = q1
+
+        End If
+
+        If i = 2 Then
+
+            StableRate_Qt211 = q2
+
+        End If
+
+        If i = 3 Then
+
+            StableRate_Qt211 = q
+
+        End If
+
+    End Function
+
+    Public Function StableRate_Qt222(ByVal N As Integer, ByVal T As Double,
+                                     ByVal k1 As Double,
+                                     ByVal por1 As Double,
+                                     ByVal mu1 As Double,
+                                     ByVal Ct1 As Double,
+                                     ByVal Bo1 As Double,
+                                     ByVal re1 As Double,
+                                     ByVal h1 As Double,
+                                     ByVal Po1 As Double,
+                                     ByVal rw1 As Double,
+                                     ByVal k2 As Double,
+                                     ByVal por2 As Double,
+                                     ByVal mu2 As Double,
+                                     ByVal Ct2 As Double,
+                                     ByVal Bo2 As Double,
+                                     ByVal re2 As Double,
+                                     ByVal h2 As Double,
+                                     ByVal Po2 As Double,
+                                     ByVal rw2 As Double,
+                                     ByVal Pwf As Double,
+                                     ByVal i As Integer) As Double
+        'Вычисляет значение забойного давления от времени для двухпластовой скважины, все переменные размерности[Си],
+        'выполняя обратное
+        'преобразование Лапласа и переводя P(s)-->P(t)
+        'T - значение времени в секундах
+        'N - точность
+        'Условие неперетока на границе пласта
+
+        Dim q1, q2, q As Double
+
+        q1 = StableRate_Qt12(N, T, k1, por1, mu1, Ct1, Bo1, rw1, re1, h1, Pwf, Po1, 2)
+        q2 = StableRate_Qt12(N, T, k2, por2, mu2, Ct2, Bo2, rw2, re2, h2, Pwf, Po2, 2)
+        q = q1 + q2
+
+        If i = 1 Then
+
+            StableRate_Qt222 = q1
+
+        End If
+
+        If i = 2 Then
+
+            StableRate_Qt222 = q2
+
+        End If
+
+        If i = 3 Then
+
+            StableRate_Qt222 = q
+
+        End If
+
+    End Function
+
+    Public Function StableRate_Qt212(ByVal N As Integer, ByVal T As Double,
+                                     ByVal k1 As Double,
+                                     ByVal por1 As Double,
+                                     ByVal mu1 As Double,
+                                     ByVal Ct1 As Double,
+                                     ByVal Bo1 As Double,
+                                     ByVal re1 As Double,
+                                     ByVal h1 As Double,
+                                     ByVal Po1 As Double,
+                                     ByVal rw1 As Double,
+                                     ByVal k2 As Double,
+                                     ByVal por2 As Double,
+                                     ByVal mu2 As Double,
+                                     ByVal Ct2 As Double,
+                                     ByVal Bo2 As Double,
+                                     ByVal re2 As Double,
+                                     ByVal h2 As Double,
+                                     ByVal Po2 As Double,
+                                     ByVal rw2 As Double,
+                                     ByVal Pwf As Double,
+                                     ByVal i As Integer) As Double
+        'Вычисляет значение забойного давления от времени для двухпластовой скважины, все переменные размерности[Си],
+        'выполняя обратное
+        'преобразование Лапласа и переводя P(s)-->P(t)
+        'T - значение времени в секундах
+        'N - точность
+        'Условие неперетока на границе пласта
+
+        Dim q1, q2, q As Double
+
+        q1 = StableRate_Qt11(N, T, k1, por1, mu1, Ct1, Bo1, rw1, re1, h1, Pwf, Po1, 2)
+        q2 = StableRate_Qt12(N, T, k2, por2, mu2, Ct2, Bo2, rw2, re2, h2, Pwf, Po2, 2)
+        q = q1 + q2
+
+        If i = 1 Then
+
+            StableRate_Qt212 = q1
+
+        End If
+
+        If i = 2 Then
+
+            StableRate_Qt212 = q2
+
+        End If
+
+        If i = 3 Then
+
+            StableRate_Qt212 = q
+
+        End If
+
+    End Function
 
 End Module
