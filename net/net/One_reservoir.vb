@@ -660,7 +660,7 @@ Public Module One_reservoir
 
     End Function
 
-    Public Function PsWBS11(ByVal k As Double,
+    Public Function StableRate_PsWBS11(ByVal k As Double,
                             ByVal por As Double,
                             ByVal mu As Double,
                             ByVal Ct As Double,
@@ -704,27 +704,27 @@ Public Module One_reservoir
         If i = 1 Then
 
             qwf = (C1 * (s / z) ^ 0.5 * spec.BesselI(xw, 1) - C2 * (s / z) ^ 0.5 * spec.BesselK(xw, 1)) * (2 * 3.14 * k * h * rw) / (mu)
-            PsWBS11 = qwf
+            StableRate_PsWBS11 = qwf
 
         End If
 
         If i = 2 Then
 
             p = C1 * spec.BesselI(xw, 0) + C2 * spec.BesselK(xw, 0)
-            PsWBS11 = p
+            StableRate_PsWBS11 = p
 
         End If
 
         If i = 3 Then
 
             qwf = Bo * q / s + Cs * s * p
-            PsWBS11 = qwf
+            StableRate_PsWBS11 = qwf
 
         End If
 
     End Function
 
-    Public Function PtWBS11(ByVal N As Integer, ByVal T As Double,
+    Public Function StableRate_PtWBS11(ByVal N As Integer, ByVal T As Double,
                             ByVal k As Double,
                             ByVal por As Double,
                             ByVal mu As Double,
@@ -750,18 +750,18 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = PsWBS11(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, si, i)
+            fi = StableRate_PsWBS11(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, si, i)
             Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        PtWBS11 = Sum
+        StableRate_PtWBS11 = Sum
 
     End Function
 
-    Public Function PsWBSr11(ByVal k As Double,
+    Public Function StableRate_PsWBSr11(ByVal k As Double,
                              ByVal por As Double,
                              ByVal mu As Double,
                              ByVal Ct As Double,
@@ -802,11 +802,11 @@ Public Module One_reservoir
         C2 = (A * F) / (A * E - B * D)
 
         p = C1 * spec.BesselI(x, 0) + C2 * spec.BesselK(x, 0)
-        PsWBSr11 = p
+        StableRate_PsWBSr11 = p
 
     End Function
 
-    Public Function PtWBSr11(ByVal N As Integer, ByVal T As Double,
+    Public Function StableRate_PtWBSr11(ByVal N As Integer, ByVal T As Double,
                              ByVal k As Double,
                              ByVal por As Double,
                              ByVal mu As Double,
@@ -833,18 +833,18 @@ Public Module One_reservoir
 
             si = (Log(2) / T) * j
             '    PsWBSr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, r, s As Double)
-            fi = PsWBSr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, r, si)
+            fi = StableRate_PsWBSr11(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, r, si)
             Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        PtWBSr11 = Sum
+        StableRate_PtWBSr11 = Sum
 
     End Function
 
-    Public Function PsWBS12(ByVal k As Double,
+    Public Function StableRate_PsWBS12(ByVal k As Double,
                             ByVal por As Double,
                             ByVal mu As Double,
                             ByVal Ct As Double,
@@ -886,20 +886,20 @@ Public Module One_reservoir
         If i = 1 Then
 
             qwf = (C1 * (s / z) ^ 0.5 * spec.BesselI(xw, 1) - C2 * (s / z) ^ 0.5 * spec.BesselK(xw, 1)) * (2 * 3.14 * k * h * rw) / (mu)
-            PsWBS12 = qwf
+            StableRate_PsWBS12 = qwf
 
         End If
 
         If i = 2 Then
 
             p = C1 * spec.BesselI(xw, 0) + C2 * spec.BesselK(xw, 0)
-            PsWBS12 = p
+            StableRate_PsWBS12 = p
 
         End If
 
     End Function
 
-    Public Function PtWBS12(ByVal N As Integer, ByVal T As Double,
+    Public Function StableRate_PtWBS12(ByVal N As Integer, ByVal T As Double,
                             ByVal k As Double,
                             ByVal por As Double,
                             ByVal mu As Double,
@@ -925,18 +925,18 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = PsWBS12(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, si, i)
+            fi = StableRate_PsWBS12(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, si, i)
             Vi = StableRate_Coef(N, j)
             r = (Log(2) / T) * Vi * fi
             Sum = Sum + r
 
         Next j
 
-        PtWBS12 = Sum
+        StableRate_PtWBS12 = Sum
 
     End Function
 
-    Public Function PsWBSr12(ByVal k As Double,
+    Public Function StableRate_PsWBSr12(ByVal k As Double,
                              ByVal por As Double,
                              ByVal mu As Double,
                              ByVal Ct As Double,
@@ -977,11 +977,11 @@ Public Module One_reservoir
         C2 = (A * F) / (A * E - B * D)
 
         p = C1 * spec.BesselI(x, 0) + C2 * spec.BesselK(x, 0)
-        PsWBSr12 = p
+        StableRate_PsWBSr12 = p
 
     End Function
 
-    Public Function PtWBSr12(ByVal N As Integer, ByVal T As Double,
+    Public Function StableRate_PtWBSr12(ByVal N As Integer, ByVal T As Double,
                              ByVal k As Double,
                              ByVal por As Double,
                              ByVal mu As Double,
@@ -1007,14 +1007,14 @@ Public Module One_reservoir
         For j = 1 To N
 
             si = (Log(2) / T) * j
-            fi = PsWBSr12(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, r, si)
+            fi = StableRate_PsWBSr12(k, por, mu, Ct, Bo, rw, re, h, Po, q, Cs, r, si)
             Vi = StableRate_Coef(N, j)
             rr = (Log(2) / T) * Vi * fi
             Sum = Sum + rr
 
         Next j
 
-        PtWBSr12 = Sum
+        StableRate_PtWBSr12 = Sum
 
     End Function
 
