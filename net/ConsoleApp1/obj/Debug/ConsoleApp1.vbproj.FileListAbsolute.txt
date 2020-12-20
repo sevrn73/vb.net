@@ -1,0 +1,17 @@
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\ConsoleApp1.xml
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\lib.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\net.dll
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\lib.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\net.pdb
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\bin\Debug\net.xml
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.vbprojAssemblyReference.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.Resources.resources
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.vbproj.GenerateResource.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.vbproj.CoreCompileInputs.cache
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.vbproj.CopyComplete
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.xml
+C:\Users\Sevrn\Desktop\vb.net\vb.net\net\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
